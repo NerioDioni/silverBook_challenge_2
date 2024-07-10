@@ -13,12 +13,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.reflect.Type;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Principal {
     private Scanner teclado = new Scanner(System.in);
     private ConsumoApi consumoApi = new ConsumoApi();
-    private final String URL_BASE = "https://gutendex.com/books/?ids=1513,1514";
+    private final String URL_BASE = "https://gutendex.com/books/?search=";
+    // private final String URL_BASE = "https://gutendex.com/books/?ids=1513,1514";
 
     public Principal() {}
 
@@ -90,21 +92,21 @@ public class Principal {
     }
     public void buscarLibroApi(){
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode jsonNode;
+        DatosBusqueda libros;
         ConvierteDatos conversor=new ConvierteDatos();
-        var json=consumoApi.obtenerDatos(URL_BASE);
-        System.out.println("json:"+json);
-
-        try {
-            jsonNode= objectMapper.readTree(json);
-            var nodoResultado=jsonNode.get("results").toString();
-            System.out.println("result a string:"+nodoResultado);
-            DatosBusqueda libros=conversor.obtenerDatos(json, DatosBusqueda.class);
-            System.out.println(libros);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+        String buscar;
+        //********************************
+        System.out.println("Ingrese nombre de libro a buscar");
+        buscar=teclado.nextLine();
+        var json=consumoApi.obtenerDatos(URL_BASE+buscar);
+        libros=conversor.obtenerDatos(json, DatosBusqueda.class);
+        Optional<DatosLibro> libroEncontrado=libros.librosEncontrados().stream().findFirst();
+        //System.out.println(libros);
+        if (libroEncontrado.isPresent()){
+            System.out.println(libroEncontrado);
+        }else {
+            System.out.println("libro no encontrado");
         }
-
 
     }
 
