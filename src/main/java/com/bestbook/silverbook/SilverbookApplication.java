@@ -1,5 +1,5 @@
 package com.bestbook.silverbook;
-import com.bestbook.silverbook.service.ConsumoApi;
+import com.bestbook.silverbook.principal.Principal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,9 +13,9 @@ public class SilverbookApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var consumoApi=new ConsumoApi();
-		var json =consumoApi.obtenerDatos("https://gutendex.com/books/?id=996");
-		System.out.println(json);
+		Principal principal = new Principal();
+		principal.muestraElMenu();
+
 
 
 	}
