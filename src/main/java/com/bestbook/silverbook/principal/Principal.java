@@ -3,7 +3,6 @@ package com.bestbook.silverbook.principal;
 
 import com.bestbook.silverbook.model.*;
 import com.bestbook.silverbook.repository.AutorRepository;
-import com.bestbook.silverbook.repository.LibroRepository;
 import com.bestbook.silverbook.service.ConsumoApi;
 import com.bestbook.silverbook.service.ConvierteDatos;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +15,6 @@ public class Principal {
     private Scanner teclado = new Scanner(System.in);
     private ConsumoApi consumoApi = new ConsumoApi();
     private final String URL_BASE = "https://gutendex.com/books/?search=";
-    private LibroRepository libroRepositorio;
     private AutorRepository autorRepositorio;
     private List<Autor> autores;
     private List<Libro> libros;
@@ -24,8 +22,7 @@ public class Principal {
 
     public Principal() {}
 
-    public Principal(LibroRepository libroR, AutorRepository autorR) {
-        this.libroRepositorio =libroR;
+    public Principal(AutorRepository autorR) {
         this.autorRepositorio=autorR;
     }
 
@@ -48,7 +45,6 @@ public class Principal {
                 opcion = teclado.nextInt();
             }catch (InputMismatchException e) {
                 System.out.println("Ocurrió un error:se esperaba un numero de tipo entero ");
-                System.out.println(e);
                 opcion=-1;
             }
             teclado.nextLine();
@@ -149,12 +145,23 @@ public class Principal {
     }
     public void autoresVivos(){
         System.out.println("Ingrese anio para buscar");
-        int buscar=teclado.nextInt();
-        autores=autorRepositorio.autoresVivos(buscar);
-        System.out.println("------Autores vivos segun anio-------");
-        autores.forEach(s ->
-                System.out.println(s+
-                        "***********************************"));
+
+        try {
+            int buscar=teclado.nextInt();
+            autores = autorRepositorio.autoresVivos(buscar);
+            System.out.println("------Autores vivos segun anio-------");
+            if (autores.isEmpty()){
+                System.out.println("no se encontraron autores vivos en ese anio");
+            }else {
+                autores.forEach(s ->
+                        System.out.println(s +
+                                "***********************************"));
+            }
+
+             }catch ( InputMismatchException e) {
+             System.out.println("Ingreso caracteres no validos, ingrese un anio");
+
+        }
 
     }
     public void buscarlibrosPorIdioma(){
