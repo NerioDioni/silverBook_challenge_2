@@ -1,11 +1,18 @@
 package com.bestbook.silverbook;
 import com.bestbook.silverbook.principal.Principal;
+import com.bestbook.silverbook.repository.AutorRepository;
+import com.bestbook.silverbook.repository.LibroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SilverbookApplication implements CommandLineRunner {
+	@Autowired
+	private LibroRepository libroR;
+	@Autowired
+	private AutorRepository autorR;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SilverbookApplication.class, args);
@@ -13,7 +20,7 @@ public class SilverbookApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Principal principal = new Principal();
+		Principal principal = new Principal(libroR,autorR);
 		principal.muestraElMenu();
 
 	}
