@@ -39,28 +39,32 @@ _Debera selecionar la opcion del menu correspondiente a la funcion deseada_
 
 _Debera ingresar palabras clave para realizar la busqueda, al encontrar el libro se procede a guardar y mostrar resultados, mas tarde podra consultar la lista de libros buscados_
 
-ejemplo
+![libro1](https://github.com/user-attachments/assets/e829770a-a092-4d89-ab06-cc03e28897ff)
+
+
 
 ### Mostrar libros buscados
 _Debera selecionar la opcion del menu correspondiente a la funcion deseada_
 
 _se mostrara una lista de los libros consultados y agrupados y por autor_
 
-ejemplo
+![buscadoslibro](https://github.com/user-attachments/assets/0b648e1a-07d8-49ec-93b8-7c70633c2a61)
+
 
 ### Mostrar libros por idioma
 _Debera selecionar la opcion del menu correspondiente a la funcion deseada_
 
 _se mostrara una lista de los libros filtrada por el idioma ingresado_
 
-ejemplo
+![idioma](https://github.com/user-attachments/assets/5a8373c2-6e62-4358-be83-7fb3932dd6c4)
+
 
 ### Mostrar Autores
 _Debera selecionar la opcion del menu correspondiente a la funcion deseada_
 
 _Se mostrar una lista de todos los autores en base a los libros consultados _
 
-ejemplo
+![autores](https://github.com/user-attachments/assets/b30eb177-7009-4b04-a484-a74ab66c845b)
 
 
 ### Mostrar Autores vivos segun anio
@@ -68,4 +72,5 @@ _Debera selecionar la opcion del menu correspondiente a la funcion deseada_
 
 _Se mostrar una lista de todos los autores vivos segun el anio ingresado _
 
-ejemplo
+![vivosanio](https://github.com/user-attachments/assets/73d925f3-1564-41dd-bfe3-a283a91ab3c5)
+
